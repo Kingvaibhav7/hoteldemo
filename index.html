@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDLI HOUSE | Authentic South Indian Food</title>
+
+  <style>
+    /* ---------- ROOT & RESET ---------- */
+    :root {
+      --primary: #e85d04;
+      --primary-light: #ff8c2e;
+      --secondary: #ffba08;
+      --secondary-dark: #e6a800;
+      --dark: #1b1b1b;
+      --light: #fffaf2;
+      --white: #ffffff;
+      --text: #2d2d2d;
+      --gray: #6b6b6b;
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 20px 36px rgba(0, 0, 0, 0.15);
+      --radius-card: 20px;
+      --radius-btn: 40px;
+      --transition: 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.dark {
+      --light: #121212;
+      --white: #1f1f1f;
+      --text: #f0f0f0;
+      --gray: #ababab;
+      --dark: #ffffff;
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+      --shadow-hover: 0 20px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ---------- NAVBAR ---------- */
+    nav {
+      height: 75px;
+      width: 100%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(6px);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .logo span {
+      color: var(--secondary-dark);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 15px;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: rgba(232, 93, 4, 0.1);
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition), transform 0.15s;
+      box-shadow: 0 6px 14px rgba(232, 93, 4, 0.3);
+    }
+
+    .cart-btn:hover {
+      background: var(--primary-light);
+      transform: scale(1.02);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 80px;
+      background:
+        linear-gradient(100deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.35) 70%),
+        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center 30%;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .hero h1 {
+      font-size: 68px;
+      line-height: 1.08;
+      margin-bottom: 24px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+    }
+
+    .hero h1 span {
+      color: var(--secondary);
+      display: inline-block;
+    }
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 560px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: var(--radius-btn);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(232, 93, 4, 0.35);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ---------- GENERAL SECTION ---------- */
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      font-size: 17px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ---------- STATS ---------- */
+    .stats {
+      background: linear-gradient(135deg, var(--primary) 0%, #d94c00 100%);
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 20px;
+      padding: 50px 8%;
+      border-radius: 0 0 0 0;
+    }
+
+    .stat h2 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .stat p {
+      margin-top: 6px;
+      font-weight: 500;
+      opacity: 0.9;
+      font-size: 15px;
+    }
+
+    /* ---------- SEARCH & FILTERS ---------- */
+    .search-box {
+      max-width: 680px;
+      margin: 0 auto 30px;
+      display: flex;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 18px 24px;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-btn);
+      outline: none;
+      font-size: 16px;
+      background: var(--white);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transition: border var(--transition), box-shadow var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(232, 93, 4, 0.15);
+    }
+
+    .filters {
+      text-align: center;
+      margin-bottom: 44px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      padding: 12px 26px;
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: all var(--transition);
+      border: 1.5px solid transparent;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 18px rgba(232, 93, 4, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- MENU GRID ---------- */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .food-card {
+      background: var(--white);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .food-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .food-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .food-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .food-info {
+      padding: 22px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .food-info h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .food-info p {
+      color: var(--gray);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .add-btn {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all var(--transition);
+      box-shadow: 0 4px 12px rgba(232, 93, 4, 0.3);
+    }
+
+    .add-btn:hover {
+      background: var(--primary-light);
+      transform: scale(1.04);
+      box-shadow: 0 6px 16px rgba(232, 93, 4, 0.4);
+    }
+
+    /* ---------- OFFER ---------- */
+    .offer {
+      background: linear-gradient(135deg, #e85d04, #ff9e00);
+      color: white;
+      border-radius: 28px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(232, 93, 4, 0.25);
+    }
+
+    .offer h2 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .offer p {
+      font-size: 18px;
+      margin-bottom: 28px;
+      opacity: 0.95;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-container img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 24px 40px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s;
+    }
+
+    .about-container img:hover {
+      transform: scale(1.01);
+    }
+
+    .about-text h2 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    /* ---------- BOOKING ---------- */
+    .booking {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 60px 8%;
+      margin: 0 8%;
+      box-shadow: var(--shadow);
+    }
+
+    .booking .section-title {
+      margin-bottom: 36px;
+    }
+
+    .booking-form {
+      max-width: 860px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .booking-form input,
+    .booking-form select {
+      padding: 16px 18px;
+      border: 1.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      outline: none;
+      font-size: 15px;
+      background: var(--light);
+      color: var(--text);
+      transition: border var(--transition), box-shadow var(--transition);
+      font-family: inherit;
+    }
+
+    .booking-form input:focus,
+    .booking-form select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.1);
+    }
+
+    .booking-form button {
+      grid-column: span 2;
+      padding: 16px;
+      font-size: 17px;
+      margin-top: 6px;
+    }
+
+    /* ---------- REVIEWS ---------- */
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .review-card {
+      background: var(--white);
+      padding: 30px 26px;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .stars {
+      color: #ffba08;
+      margin-bottom: 18px;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .review-card p {
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-size: 15px;
+      font-style: italic;
+    }
+
+    .review-card strong {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: #1b1b1b;
+      color: white;
+      border-radius: 28px 28px 0 0;
+      margin-top: 40px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .contact h3 {
+      margin-bottom: 18px;
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .contact p {
+      line-height: 1.9;
+      color: #cccccc;
+      font-size: 15px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #101010;
+      color: #888;
+      text-align: center;
+      padding: 24px;
+      font-size: 14px;
+      border-top: 1px solid #222;
+    }
+
+    /* ---------- CART PANEL ---------- */
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -460px;
+      width: 420px;
+      max-width: 100%;
+      height: 100vh;
+      background: var(--white);
+      z-index: 2000;
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+      padding: 28px 24px;
+      transition: right 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-panel.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .cart-header h2 {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    #cartItems {
+      flex: 1;
+      overflow-y: auto;
+      margin: 10px 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .cart-item strong {
+      font-size: 15px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .quantity-controls button {
+      border: none;
+      background: var(--primary);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+
+    .quantity-controls button:hover {
+      background: var(--primary-light);
+    }
+
+    .cart-total {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 18px 0;
+      padding-top: 16px;
+      border-top: 2px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .checkout {
+      width: 100%;
+      padding: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background var(--transition);
+      box-shadow: 0 8px 20px rgba(232, 93, 4, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .checkout:hover {
+      background: var(--primary-light);
+    }
+
+    /* ---------- TOAST ---------- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: #1f1f1f;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 60px;
+      z-index: 3000;
+      transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s;
+      opacity: 0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+      font-weight: 500;
+      font-size: 15px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      .booking {
+        padding: 45px 6%;
+        margin: 0 4%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 110px 7% 60px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .about-text h2 {
+        font-size: 34px;
+      }
+
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-form button {
+        grid-column: span 1;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .offer h2 {
+        font-size: 30px;
+      }
+
+      .offer {
+        padding: 40px 24px;
+      }
+
+      .stats {
+        gap: 8px;
+      }
+
+      .stat h2 {
+        font-size: 28px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cart-panel {
+        width: 100%;
+        right: -100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 60px 6%;
+      }
+
+      .booking {
+        padding: 32px 5%;
+        margin: 0 2%;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .cart-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">🥥 IDLI <span>HOUSE</span></div>
+
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#booking">Book Table</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="icon-btn" onclick="toggleDark()" aria-label="Toggle dark mode">🌙</button>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Authentic <span>South Indian</span> Taste ❤️</h1>
+    <p>
+      Freshly prepared Idlis, crispy Dosas and delicious South Indian dishes served with love and authentic traditional flavours.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#menu" class="btn btn-primary">🍽 Explore Menu</a>
+      <a href="#booking" class="btn btn-secondary">📅 Book a Table</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat">
+    <h2>10K+</h2>
+    <p>Happy Customers</p>
+  </div>
+  <div class="stat">
+    <h2>25+</h2>
+    <p>Delicious Dishes</p>
+  </div>
+  <div class="stat">
+    <h2>10+</h2>
+    <p>Years of Taste</p>
+  </div>
+  <div class="stat">
+    <h2>4.9 ⭐</h2>
+    <p>Customer Rating</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-title">
+    <h2>🍛 Our Delicious Menu</h2>
+    <p>Fresh food. Authentic taste. Happy heart.</p>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔍 Search your favourite food..." onkeyup="searchFood()">
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterFood('all', this)">All</button>
+    <button class="filter-btn" onclick="filterFood('idli', this)">Idli</button>
+    <button class="filter-btn" onclick="filterFood('dosa', this)">Dosa</button>
+    <button class="filter-btn" onclick="filterFood('snacks', this)">Snacks</button>
+  </div>
+
+  <div class="menu-grid" id="menuGrid">
+    <!-- cards -->
+    <div class="food-card idli">
+      <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Classic Idli">
+      <div class="food-info">
+        <h3>Classic Idli</h3>
+        <p>Soft steamed idlis with sambar & chutney.</p>
+        <div class="price-row">
+          <span class="price">₹60</span>
+          <button class="add-btn" onclick="addToCart('Classic Idli',60)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card idli">
+      <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80" alt="Masala Idli">
+      <div class="food-info">
+        <h3>Masala Idli</h3>
+        <p>Spicy fried idlis with authentic masala.</p>
+        <div class="price-row">
+          <span class="price">₹90</span>
+          <button class="add-btn" onclick="addToCart('Masala Idli',90)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card dosa">
+      <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=600&q=80" alt="Masala Dosa">
+      <div class="food-info">
+        <h3>Masala Dosa</h3>
+        <p>Crispy dosa filled with delicious potato masala.</p>
+        <div class="price-row">
+          <span class="price">₹120</span>
+          <button class="add-btn" onclick="addToCart('Masala Dosa',120)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card snacks">
+      <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd5?auto=format&fit=crop&w=600&q=80" alt="Medu Vada">
+      <div class="food-info">
+        <h3>Medu Vada</h3>
+        <p>Crispy and fluffy vada served with chutney.</p>
+        <div class="price-row">
+          <span class="price">₹70</span>
+          <button class="add-btn" onclick="addToCart('Medu Vada',70)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card dosa">
+      <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80" alt="Plain Dosa">
+      <div class="food-info">
+        <h3>Plain Dosa</h3>
+        <p>Golden crispy traditional South Indian dosa.</p>
+        <div class="price-row">
+          <span class="price">₹100</span>
+          <button class="add-btn" onclick="addToCart('Plain Dosa',100)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card snacks">
+      <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80" alt="South Indian Combo">
+      <div class="food-info">
+        <h3>South Indian Combo</h3>
+        <p>Idli, vada, dosa, sambar and chutney.</p>
+        <div class="price-row">
+          <span class="price">₹199</span>
+          <button class="add-btn" onclick="addToCart('South Indian Combo',199)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card idli">
+      <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Rava Idli">
+      <div class="food-info">
+        <h3>Rava Idli</h3>
+        <p>Healthy and delicious semolina idlis.</p>
+        <div class="price-row">
+          <span class="price">₹80</span>
+          <button class="add-btn" onclick="addToCart('Rava Idli',80)">Add +</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card snacks">
+      <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Sambar Rice">
+      <div class="food-info">
+        <h3>Sambar Rice</h3>
+        <p>Comforting rice served with rich South Indian sambar.</p>
+        <div class="price-row">
+          <span class="price">₹110</span>
+          <button class="add-btn" onclick="addToCart('Sambar Rice',110)">Add +</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section>
+  <div class="offer">
+    <h2>🔥 Today's Special Offer!</h2>
+    <p>Get 20% OFF on all South Indian Combo Meals!</p>
+    <button class="btn btn-secondary" onclick="showToast('🎉 Offer Applied Successfully!')">
+      Claim Offer
+    </button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-container">
+    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=900&q=80" alt="About Idli House">
+    <div class="about-text">
+      <h2>🥥 About IDLI HOUSE</h2>
+      <p>
+        IDLI HOUSE brings the authentic flavours of South India directly to your plate. Every dish is prepared fresh using quality ingredients and traditional recipes.
+      </p>
+      <p>
+        Our mission is simple — delicious food, great service and happy customers. ❤️
+      </p>
+      <button class="btn btn-primary" onclick="showToast('❤️ Thank you for choosing IDLI HOUSE!')">
+        Learn More
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="section-title">
+    <h2>📅 Book Your Table</h2>
+    <p>Reserve your seat and enjoy your meal without waiting!</p>
+  </div>
+
+  <form class="booking-form" onsubmit="bookTable(event)">
+    <input type="text" placeholder="Your Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="date" required>
+    <input type="time" required>
+    <select required>
+      <option value="">Number of Guests</option>
+      <option>1 Person</option>
+      <option>2 People</option>
+      <option>3-4 People</option>
+      <option>5+ People</option>
+    </select>
+    <select required>
+      <option value="">Select Table</option>
+      <option>Regular Table</option>
+      <option>Family Table</option>
+      <option>Premium Table</option>
+    </select>
+    <button class="btn btn-primary">Confirm Booking 🍽️</button>
+  </form>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <div class="section-title">
+    <h2>⭐ What Our Customers Say</h2>
+  </div>
+
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"The idlis were super soft and the sambar tasted amazing!"</p>
+      <strong>— Rahul Sharma</strong>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Best South Indian restaurant experience. Highly recommended!"</p>
+      <strong>— Priya Patil</strong>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Amazing food, clean restaurant and excellent service."</p>
+      <strong>— Amit Kumar</strong>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <h3>🥥 IDLI HOUSE</h3>
+      <p>Authentic South Indian Taste, Served with Love ❤️</p>
+    </div>
+    <div>
+      <h3>📍 Visit Us</h3>
+      <p>
+        Main Road, Pune<br>
+        Maharashtra, India
+      </p>
+    </div>
+    <div>
+      <h3>📞 Contact</h3>
+      <p>
+        +91 98765 43210<br>
+        idlihouse@email.com<br>
+        8:00 AM – 11:00 PM
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 IDLI HOUSE | Made with ❤️ for Food Lovers
+</footer>
+
+<!-- CART -->
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h2>🛒 Your Cart</h2>
+    <button class="icon-btn" onclick="toggleCart()" aria-label="Close cart">✖</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="cart-total">
+    Total: ₹<span id="cartTotal">0</span>
+  </div>
+  <button class="checkout" onclick="checkout()">
+    Proceed to Checkout 🍽️
+  </button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let cart = [];
+
+  /* ADD TO CART */
+  function addToCart(name, price) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ name: name, price: price, quantity: 1 });
+    }
+    updateCart();
+    showToast("✅ " + name + " added to cart!");
+  }
+
+  /* UPDATE CART */
+  function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+
+    cartItems.innerHTML = "";
+    let total = 0;
+    let count = 0;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = "<p style='margin-top:30px;color:#777;text-align:center;'>Your cart is empty 🥺</p>";
+    }
+
+    cart.forEach((item, index) => {
+      total += item.price * item.quantity;
+      count += item.quantity;
+
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <div>
+            <strong>${item.name}</strong><br>
+            <span style="color:var(--gray);font-size:14px;">₹${item.price}</span>
+            <div class="quantity-controls">
+              <button onclick="changeQuantity(${index}, -1)">−</button>
+              <span>${item.quantity}</span>
+              <button onclick="changeQuantity(${index}, 1)">+</button>
+            </div>
+          </div>
+          <strong>₹${item.price * item.quantity}</strong>
+        </div>
+      `;
+    });
+
+    cartCount.innerText = count;
+    cartTotal.innerText = total;
+  }
+
+  /* CHANGE QUANTITY */
+  function changeQuantity(index, change) {
+    cart[index].quantity += change;
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+    updateCart();
+  }
+
+  /* TOGGLE CART */
+  function toggleCart() {
+    document.getElementById("cartPanel").classList.toggle("active");
+  }
+
+  /* CHECKOUT */
+  function checkout() {
+    if (cart.length === 0) {
+      showToast("🛒 Your cart is empty!");
+      return;
+    }
+    let total = document.getElementById("cartTotal").innerText;
+    showToast("🎉 Order placed successfully! Total: ₹" + total);
+    cart = [];
+    updateCart();
+    setTimeout(() => { toggleCart(); }, 1000);
+  }
+
+  /* SEARCH */
+  function searchFood() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let cards = document.querySelectorAll(".food-card");
+    cards.forEach(card => {
+      let name = card.querySelector("h3").innerText.toLowerCase();
+      card.style.display = name.includes(input) ? "block" : "none";
+    });
+  }
+
+  /* FILTER */
+  function filterFood(category, button) {
+    let cards = document.querySelectorAll(".food-card");
+    cards.forEach(card => {
+      if (category === "all" || card.classList.contains(category)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+  }
+
+  /* DARK MODE */
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+    let button = document.querySelector(".nav-actions .icon-btn");
+    button.innerText = document.body.classList.contains("dark") ? "☀️" : "🌙";
+  }
+
+  /* TABLE BOOKING */
+  function bookTable(event) {
+    event.preventDefault();
+    showToast("🎉 Table booked successfully! We will contact you soon.");
+    event.target.reset();
+  }
+
+  /* TOAST */
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3000);
+  }
+
+  /* initial cart update */
+  updateCart();
+</script>
+
+</body>
+</html>
